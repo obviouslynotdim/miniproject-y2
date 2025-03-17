@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  {{ friend.name }}'s Detail
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="mt-3 text-primary">{{ friend.name }}'s Detail</h1>
+    <hr>
+    <div class="row">
+      <div class="col-md mt-3">
+        <img src="{{ friend.img_url }}" alt="{{ friend.name }}" class="img-thumbnail">
+      </div>
+      <div class="col-md mt-3 mb-3">
+        <h2 class="text-primary">Description:</h2>
+        <h3>{{ friend.friend_details }}</h3>
+        
+        <hr>
+        
+        <h2 class="text-primary">Added by:</h2>
+        <h3>{{ friend.user.username }}</h3>
+        
+        <hr>
+        
+        <div>
+          <a href="{{ url_for('home') }}" class="btn btn-outline-primary">
+            <i class="bi bi-skip-backward-btn"></i>
+            Back to Friends List
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

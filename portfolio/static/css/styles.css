@@ -1,0 +1,22 @@
+* {
+    font-family: "Nunito", "Krub", sans-serif;
+  }
+  
+  /* Dark Mode Styles */
+  body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+  }
+  
+  body.dark-mode .card {
+    background-color: #1c1c1c;
+    color: #ffffff;
+    border: 1px solid #333;
+  }
+  
+  body.dark-mode .form-control {
+    background-color: #1c1c1c;
+    color: #ffffff;
+    border: 1px solid #444;
+  }
+  

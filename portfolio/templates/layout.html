@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Krub:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <title>Portfolio - {% block title %}{% endblock %}</title>
+
+  <style>
+    * {
+      font-family: "Nunito", "krub", sans-serif;
+    }
+    /* Dark Mode Styles */
+    /* Dark Mode Styles */
+    body.dark-mode {
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    body.dark-mode .card {
+      background-color: #1c1c1c;
+      color: #ffffff;
+      border: 1px solid #333;
+    }
+
+    body.dark-mode .form-control {
+      background-color: #1c1c1c;
+      color: #fff;
+      border: 1px solid #444;
+    }
+
+    body.dark-mode .form-control::placeholder {
+      color: #ddd;
+    }
+    
+    /* Card */
+    .card-friend {
+      transition: transform .5s;
+    }
+    .card-friend:hover {
+      transform: scale(1.05);
+    }
+    .card-img-top {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    /* Dark Mode Pagination */
+    body.dark-mode .pagination .page-link {
+      background-color: #ddd;
+      color: #0d6efd;
+      border: 1px solid #444;
+    transition: transform 0.3s, background-color 0.3s;
+    }
+    
+    body.dark-mode .pagination .page-link:hover {
+      background-color: #0d6efd;
+      color: white;
+      transform: scale(1.1);
+    }
+    body.dark-mode .pagination .page-item.active .page-link {
+      background-color: #0d6efd;
+      border-color: #0d6efd;
+      color: white;
+    }
+    body.dark-mode .pagination .page-item.disabled .page-link {
+      background-color: #333;
+      color: #777;
+    }
+    
+  </style>
+</head>
+<body>
+  {% include "navbar.html" %}
+  {% block content %}{% endblock %}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const themeToggle = document.getElementById('theme-toggle');
+      const moonIcon = document.getElementById('moon-icon');
+      const sunIcon = document.getElementById('sun-icon');
+  
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+          document.body.classList.toggle('dark-mode');
+  
+          moonIcon.classList.toggle('d-none');
+          sunIcon.classList.toggle('d-none');
+  
+          localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+  
+        // Apply saved theme on page load
+        if (localStorage.getItem('theme') === 'dark') {
+          document.body.classList.add('dark-mode');
+          moonIcon.classList.add('d-none');
+          sunIcon.classList.remove('d-none');
+        }
+      }
+    });
+  </script>
+  
+</body>
+</html>

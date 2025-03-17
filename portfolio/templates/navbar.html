@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand-lg bg-primary-subtle" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{url_for('home')}}">Friends Profile</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Home</a>
+        </li>
+        {% if current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('friend')}}">Friends</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('account')}}">Account</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Clear Data
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{url_for('home')}}">Friend Data</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <form action="{{ url_for('delete_all_friends') }}" method="POST" style="display:inline;">
+                  <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Are you sure you want to delete all friends? This action cannot be undone.')">
+                      Delete All Data
+                  </button>
+              </form>
+            </li>
+
+          </ul>
+        </li>
+        {% endif %}
+      </ul>
+
+      <ul class="navbar-nav">
+        {% if current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('account')}}">
+            <img src="{{url_for('static', filename='img/'+ current_user.avatar)}}" width="25" height="25" alt="">
+            Welcome, {{current_user.username}}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{url_for('logout')}}" class="nav-link">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)" id="theme-toggle">
+            <i class="bi bi-moon" id="moon-icon"></i>
+            <i class="bi bi-sun d-none" id="sun-icon"></i>
+          </a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a href="{{url_for('register')}}" class="nav-link">Register</a>
+        </li>
+        <li class="nav-item">
+          <a href="{{url_for('login')}}" class="nav-link">Login</a>
+        </li>
+        <!-- Dark/Light Mode Toggle -->
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)" id="theme-toggle">
+            <i class="bi bi-moon" id="moon-icon"></i>
+            <i class="bi bi-sun d-none" id="sun-icon"></i>
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+
+    </div>
+  </div>
+</nav>
